@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cube map</title>
+
+    <style>
+       html, body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: #000;
+      }
+    </style>
+</head>
+<body>
+<script type="text/javascript" src="libs/three.min.js"></script>
+<script type="text/javascript" src="libs/panolens.min.js"></script>
+<script>
+      let panorama, viewer;
+      panorama = new PANOLENS.CubePanorama( [
+        "cubemaps/whitendon_01/env5.png",
+        "cubemaps/whitendon_01/env3.png",
+        "cubemaps/whitendon_01/env1.png",
+        "cubemaps/whitendon_01/env6.png",
+        "cubemaps/whitendon_01/env2.png",
+        "cubemaps/whitendon_01/env4.png"
+      ] );
+
+      viewer = new PANOLENS.Viewer();
+      viewer.add( panorama );
+</script>
+</body>
+</html>
