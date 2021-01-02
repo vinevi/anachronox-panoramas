@@ -40,7 +40,10 @@
 <script type="text/javascript" src="libs/three.min.js"></script>
 <script type="text/javascript" src="libs/panolens.min.js"></script>
 <script>
-	let viewer = new PANOLENS.Viewer();
+	let viewer = new PANOLENS.Viewer({
+		autoHideControlBar: true,
+		enableReticle: false,
+	});
 	viewer.sceneReticle.visible = false;
 	document.addEventListener('DOMContentLoaded', function(){
 		let selectElement = document.querySelector('#cubemap-select');
