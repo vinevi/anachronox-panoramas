@@ -6,82 +6,67 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="theme-color" content="#010101">
-
-    <title>Anachronox Panoramas</title>
-
-    <style>
-       html, body {
-        margin: 0;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-        background-color: #010101;
-      }
-      #cubemap-select {
-        position: fixed;
-        top: 8px;
-        left: 8px;
-        z-index: 100;
-      }
-      .panolens-container {
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
-    </style>
+	<title>Anachronox Panoramas</title>
+<style>
+	html, body {
+		margin: 0;
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+		background-color: #010101;
+	}
+	#cubemap-select {
+		position: fixed;
+		top: 8px;
+		left: 8px;
+		z-index: 100;
+	}
+	.panolens-container {
+		position: absolute;
+		top: 0;
+		left: 0;
+	}
+</style>
 </head>
 <body>
-  <label for="cubemap-select">Select a cubemap:</label>
-  <select onchange="newCubemap(value)" name="cubemap-select" id="cubemap-select">
-    <option value="whitendon_01">Whitendon</option>
-    <option value="rowdys_01">Rowdy's</option>
-    <option value="hephaestus_01">Hephaestus</option>
-  </select>
+	<label for="cubemap-select">Select a panorama:</label>
+	<select name="cubemap-select" id="cubemap-select">
+		<option value="votowne_01">Votowne</option>
+		<option value="hephaestus_01">Hephaestus</option>
+		<option value="rowdys_01">Rowdy's</option>
+		<option value="whitendon_01">Whitendon</option>
+	
+	</select>
 <script type="text/javascript" src="libs/three.min.js"></script>
 <script type="text/javascript" src="libs/panolens.min.js"></script>
 <script>
-      let panorama1, panorama2, viewer;
-      panorama1 = new PANOLENS.CubePanorama( [
-        `cubemaps/whitendon_01/env5.png`,
-        `cubemaps/whitendon_01/env3.png`,
-        `cubemaps/whitendon_01/env1.png`,
-        `cubemaps/whitendon_01/env6.png`,
-        `cubemaps/whitendon_01/env2.png`,
-        `cubemaps/whitendon_01/env4.png`
-      ] );
-      panorama2 = new PANOLENS.CubePanorama( [
-        `cubemaps/rowdys_01/env5.png`,
-        `cubemaps/rowdys_01/env3.png`,
-        `cubemaps/rowdys_01/env1.png`,
-        `cubemaps/rowdys_01/env6.png`,
-        `cubemaps/rowdys_01/env2.png`,
-        `cubemaps/rowdys_01/env4.png`
-      ] );
-      panorama3 = new PANOLENS.CubePanorama( [
-        `cubemaps/hephaestus_01/env5.png`,
-        `cubemaps/hephaestus_01/env3.png`,
-        `cubemaps/hephaestus_01/env1.png`,
-        `cubemaps/hephaestus_01/env6.png`,
-        `cubemaps/hephaestus_01/env2.png`,
-        `cubemaps/hephaestus_01/env4.png`
-      ] );
-      viewer = new PANOLENS.Viewer();
-      viewer.add( panorama1, panorama2, panorama3 );
-      function newCubemap(value) {
-        console.log(value);
-        switch(value) {
-          case 'whitendon_01':
-            viewer.setPanorama(panorama1);
-            break;
-          case 'rowdys_01':
-            viewer.setPanorama(panorama2);
-            break;
-          case 'hephaestus_01':
-            viewer.setPanorama(panorama3);
-            break;
-        }  
-      }
-
+	document.addEventListener('DOMContentLoaded', function(){
+		let viewer = new PANOLENS.Viewer();	
+		let selectElement = document.querySelector('#cubemap-select');
+		let options = selectElement.querySelectorAll('option');
+		let basePath = 'cubemaps';
+		let extension = '.png';
+		let panoramas = [];
+		options.forEach(function(option){
+			let value = option.value;
+			let path = basePath + '/' + value + '/';
+			let panorama = new PANOLENS.CubePanorama( [
+				path + 'left' + extension,
+				path + 'right' + extension,
+				path + 'top' + extension,
+				path + 'bottom' + extension,
+				path + 'back' + extension,
+				path + 'front' + extension,
+				
+			]);
+			viewer.add(panorama);
+			panoramas.push(panorama);
+		});
+		selectElement.addEventListener('change', function(event){
+			let index = event.target.selectedIndex;
+			viewer.setPanorama(panoramas[index]);
+		});
+	});
 </script>
 </body>
 </html>
