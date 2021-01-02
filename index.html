@@ -41,7 +41,8 @@
 <script type="text/javascript" src="libs/panolens.min.js"></script>
 <script>
 	document.addEventListener('DOMContentLoaded', function(){
-		let viewer = new PANOLENS.Viewer();	
+		let viewer = new PANOLENS.Viewer();
+		viewer.disableReticleControl();
 		let selectElement = document.querySelector('#cubemap-select');
 		let options = selectElement.querySelectorAll('option');
 		let basePath = 'cubemaps';
