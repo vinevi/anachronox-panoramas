@@ -40,9 +40,9 @@
 <script type="text/javascript" src="libs/three.min.js"></script>
 <script type="text/javascript" src="libs/panolens.min.js"></script>
 <script>
+	let viewer = new PANOLENS.Viewer();
+	viewer.sceneReticle.visible = false;
 	document.addEventListener('DOMContentLoaded', function(){
-		let viewer = new PANOLENS.Viewer();
-		viewer.disableReticleControl();
 		let selectElement = document.querySelector('#cubemap-select');
 		let options = selectElement.querySelectorAll('option');
 		let basePath = 'cubemaps';
@@ -66,6 +66,7 @@
 		selectElement.addEventListener('change', function(event){
 			let index = event.target.selectedIndex;
 			viewer.setPanorama(panoramas[index]);
+			viewer.disableReticleControl();
 		});
 	});
 </script>
