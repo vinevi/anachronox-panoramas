@@ -1,0 +1,12 @@
+{
+  "name": "Anachronox Panoramas",
+  "icons": [
+    {
+      "src": "anox_ico.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    }
+   ],
+   "start_url": "/",
+   "display": "fullscreen"
+}
