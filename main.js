@@ -3,7 +3,7 @@
 		autoHideControlBar: true,
 		enableReticle: false,
 	});
-	let stereo = new PANOLENS.Stereo( 0.4 );
+	let stereo = new PANOLENS.Stereo(0.04);
 	viewer.sceneReticle.visible = false;
 	document.addEventListener('DOMContentLoaded', function(){
 		let selectElement = document.querySelector('#cubemap-select');
