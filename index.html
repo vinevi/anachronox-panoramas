@@ -1,77 +1,20 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<link rel="manifest" href="manifest.webmanifest">
-	<link rel="icon" type="image/png" href="anox_ico.png" />
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="theme-color" content="#010101">
-	<title>Anachronox Panoramas</title>
-<style>
-	html, body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-		overflow: hidden;
-		background-color: #010101;
-	}
-	#cubemap-select {
-		position: fixed;
-		top: 8px;
-		left: 8px;
-		z-index: 100;
-	}
-	.panolens-container {
-		position: absolute;
-		top: 0;
-		left: 0;
-	}
-</style>
-</head>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="anox_ico.png" />
+<link rel="stylesheet" href="styles.css">	
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#010101">
+<title>Anachronox Panoramas</title>
 <body>
-	<label for="cubemap-select">Select a panorama:</label>
-	<select name="cubemap-select" id="cubemap-select">
-		<option value="votowne_01">Votowne</option>
-		<option value="hephaestus_01">Hephaestus</option>
-		<option value="rowdys_01">Rowdy's</option>
-		<option value="whitendon_01">Whitendon</option>
-	
-	</select>
+<label for="cubemap-select">Select a panorama:</label>
+<select name="cubemap-select" id="cubemap-select">
+	<option data-path="/panoramas/whitendon/whitendon_01.png">Whitendon</option>
+</select>
 <script type="text/javascript" src="libs/three.min.js"></script>
 <script type="text/javascript" src="libs/panolens.min.js"></script>
-<script>
-	let viewer = new PANOLENS.Viewer({
-		autoHideControlBar: true,
-		enableReticle: false,
-	});
-	viewer.sceneReticle.visible = false;
-	document.addEventListener('DOMContentLoaded', function(){
-		let selectElement = document.querySelector('#cubemap-select');
-		let options = selectElement.querySelectorAll('option');
-		let basePath = 'cubemaps';
-		let extension = '.png';
-		let panoramas = [];
-		options.forEach(function(option){
-			let value = option.value;
-			let path = basePath + '/' + value + '/';
-			let panorama = new PANOLENS.CubePanorama( [
-				path + 'left' + extension,
-				path + 'right' + extension,
-				path + 'top' + extension,
-				path + 'bottom' + extension,
-				path + 'back' + extension,
-				path + 'front' + extension,
-				
-			]);
-			viewer.add(panorama);
-			panoramas.push(panorama);
-		});
-		selectElement.addEventListener('change', function(event){
-			let index = event.target.selectedIndex;
-			viewer.setPanorama(panoramas[index]);
-			viewer.disableReticleControl();
-		});
-	});
-</script>
+<script src="main.js"></script>
 </body>
 </html>
