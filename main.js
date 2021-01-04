@@ -14,6 +14,7 @@
 		{
 			"name": "Rowdys - Boot's office",
 			"cubemap": "panoramas/rowdys/01/cubemap/",
+			"stereo": "panoramas/whitendon/01/rowdys_01.png"
 		}
 	];
 
