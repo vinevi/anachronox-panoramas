@@ -5,12 +5,11 @@ html, body {
 	overflow: hidden;
 	background-color: #010101;
 }
-#panorama-controls {
+#cubemap-select {
 	position: fixed;
 	top: 8px;
-	left: 8px;
+	right: 8px;
 	z-index: 100;
-	color: white;
 }
 .panolens-container {
 	position: absolute;
